@@ -15,6 +15,7 @@ const peticion = function (url) {
       });
   };
   
+
   const traduc = (idioma) => {
     console.log(idioma);
     if (idioma === "espanol") {

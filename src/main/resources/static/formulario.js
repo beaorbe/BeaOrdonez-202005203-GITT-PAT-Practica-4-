@@ -1,38 +1,65 @@
-var raw = JSON.stringify({
- "name_id" : document.getElementById("name_id"),
- "apellido_id" : document.getElementbyId("apellido_id"),
- "email_id" : document.getElementbyId("email_id"),
- "phone_id" : document.getElementbyId("phone_id")
-})
 
 function getPersona(){
-  fetch('http://localhost:8888/api/info',
- {
-  headers: {
-    nombre: 'name_id',
-    apellido: 'apellidos_id',
-    email:'email_id',
-    tel: 'phone_id',
-    Accept: 'form/json'
-  },
-   method: "POST",
-   mode: "cors",
-   payload:raw
- })
-  
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      throw new Error("Error petición");
-    }
-  })
 
-  .then(r=> {
-    persona =r;
-  })
+  var raw= JSON.stringify({ 
+    NOMBRE: document.getElementById("NOMBRE").value, 
+    APELLIDOS: document.getElementById("APELLIDOS").value,
+    EMAIL: document.getElementById("EMAIL").value,
+    TELEFONO: document.getElementById("TELEFONO").value }
+    );
   
-  .catch((error) => {
-    console.log(error);
-  });
-};
+  alert("SE HAN GUARDADO CORRECTAMENTE LOS SIGUIENTES DATOS:" + raw );
+  
+  fetch('http://localhost:8888/api/info',
+   {
+    headers: {
+      "Content-Type": "application/json"
+    },
+     method: "POST",
+     body: raw
+   })
+  .then(response => {
+      if (res.ok) {
+
+        return(console.log(res.text())); 
+        //return res.text();
+       
+      } else {
+        throw new Error("Error petición");
+      }
+    })
+    .then((data) => {
+      window.location.replace("./index.html");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
+
+
+  const addItemToList = (item) => {
+    const newItem = `<button id="${item.key}" class="list-group-item list-group-item-action">
+      ${item.title}
+    </button>`;
+    $("#list-entries-blog").append(newItem);
+  
+    $("#" + item.key).on("click", () => {
+      showBlogPost(item.key);
+    });
+  };
+
+
+  const showBlogPost = (key) => {
+    hideWindowContent();
+  
+    const entry = entries[key];
+  
+    $("#blog-entry-title").html(entry.title);
+    $("#blog-entry-author").html(entry.author);
+    $("#blog-entry-comment").html(entry.comments);
+  
+    showWindowContent("blog-entry");
+  };
+
+  
