@@ -28,6 +28,7 @@ public class PersonasController {
 	consumes = MediaType.APPLICATION_JSON_VALUE,
 	produces =MediaType.TEXT_PLAIN_VALUE)
 
+	///he incluido esto pero no he conseguido que funcione bien 
 	public String checkPersonaInfo(@Valid Persona persona,
 					BindingResult bindingResult) {
 						
@@ -40,6 +41,7 @@ public class PersonasController {
 						
 					}
 
+	//funciona 
 	public  ResponseEntity<String> contacto(@RequestBody Persona persona) {
 				
 		return new ResponseEntity<>(persona.toString(),HttpStatus.OK);
