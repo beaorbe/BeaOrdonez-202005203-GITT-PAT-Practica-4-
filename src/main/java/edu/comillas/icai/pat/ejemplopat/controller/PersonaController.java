@@ -36,7 +36,7 @@ public class PersonaController {
 	}
 
 	@GetMapping("/info/{id}")
-    public ResponseEntity<Persona> retrieveWine(@PathVariable String id) {
+    public ResponseEntity<Persona> retrievePersona(@PathVariable String id) {
         Persona response = MyService.retrievePersona(id);
         return ResponseEntity.ok().body(response);
     }
