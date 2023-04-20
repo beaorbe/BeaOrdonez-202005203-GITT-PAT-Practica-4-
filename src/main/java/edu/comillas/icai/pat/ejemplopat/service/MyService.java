@@ -7,7 +7,7 @@ public interface MyService {
     Persona createPersona(Persona persona);
     Persona updatePersona(String nombre, Persona persona);
     Persona searchPersona(String nombre);
-    Persona deletePersona(String nombre);
+    void deletePersona(String nombre);
 
 }
 

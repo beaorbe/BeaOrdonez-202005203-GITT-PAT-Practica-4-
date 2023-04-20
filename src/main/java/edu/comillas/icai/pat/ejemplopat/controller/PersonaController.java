@@ -50,7 +50,7 @@ public class PersonaController {
 
 
 	//buscar persona
-	@GetMapping("/wines/{id}")
+	@GetMapping("/persona/{id}")
     public ResponseEntity<Persona> searchPersona(@PathVariable String id) {
         Persona response = MyService.searchPersona(id);
         return ResponseEntity.ok().body(response);
@@ -59,20 +59,20 @@ public class PersonaController {
 
 
 	//update Persona 
-	@PutMapping("/wines/{id}")
-    public ResponseEntity<Persona> updateWine(@PathVariable String id, @RequestBody Wine wine) {
-        Persona newWine = personaService.updateWine(id, wine);
-        if (newWine == null) {
+	@PutMapping("/persona/{id}")
+    public ResponseEntity<Persona> updatePersona(@PathVariable String id, @RequestBody Persona persona) {
+        Persona newPersona = MyService.updatePersona(id, persona);
+        if (newPersona == null) {
             return ResponseEntity.badRequest().body(null);
         }
-        return ResponseEntity.ok().body(newWine);
+        return ResponseEntity.ok().body(newPersona);
     }
 
 
 	//Borrar persona
-    @DeleteMapping("/wines/{id}")
-    public ResponseEntity<Wine> deleteWine(@PathVariable String id) {
-        wineService.deleteWine(id);
+    @DeleteMapping("/persona/{id}")
+    public ResponseEntity<Persona> deletePersona(@PathVariable String id) {
+        MyService.deletePersona(id);
         return ResponseEntity.noContent().build();
     }
 
