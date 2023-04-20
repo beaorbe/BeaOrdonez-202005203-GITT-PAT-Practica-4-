@@ -3,14 +3,17 @@ package edu.comillas.icai.pat.ejemplopat.model;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.annotation.Id;
 
 
 @Data
 @Builder
-@Table
+@Table("PERSONA")
 
 public class Persona {
    
+    @Id
+    private Long id;
 
     private String NOMBRE; 
     private String APELLIDOS; 
@@ -51,7 +54,7 @@ public class Persona {
     }
     
     
-    public Persona(String NOMBRE, String APELLIDOS, String EMAIL, String TELEFONO) {
+    public Persona(Long id, String NOMBRE, String APELLIDOS, String EMAIL, String TELEFONO) {
         this.NOMBRE = NOMBRE;
         this.APELLIDOS = APELLIDOS;
         this.EMAIL = EMAIL;

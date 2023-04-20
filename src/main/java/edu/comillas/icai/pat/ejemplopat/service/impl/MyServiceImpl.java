@@ -31,10 +31,10 @@ public class MyServiceImpl implements MyService {
 
 	//buscar persona 
 	@Override
-    public Persona searchPersona(String nombre) {
+    public Persona searchPersona(String id) {
         Persona response = null;
-        if (personaRepository.existsById(nombre)) {
-            Iterable<Persona> personas = personaRepository.searchPersona(nombre);
+        if (personaRepository.existsById(id)) {
+            Iterable<Persona> personas = personaRepository.searchPersona(id);
             for (Persona persona : personas) {
                 response = persona;
             }
@@ -45,8 +45,8 @@ public class MyServiceImpl implements MyService {
 
 	//update persona
 	@Override
-    public Persona updatePersona(String nombre, Persona persona) {
-        if (personaRepository.existsById(nombre)) {
+    public Persona updatePersona(String id, Persona persona) {
+        if (personaRepository.existsById(id)) {
             return personaRepository.save(persona);
         } else {
             return null;

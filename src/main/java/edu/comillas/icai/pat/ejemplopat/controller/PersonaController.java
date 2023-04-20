@@ -38,11 +38,9 @@ public class PersonaController {
 	}
 
 	//crear persona
-	@PostMapping("/persona")
-	public  ResponseEntity<Persona> createPersona(@RequestBody Persona persona) 
+	@PostMapping("/crearpersona")
+	public ResponseEntity<Persona> createPersona(@RequestBody Persona persona) 
 	{
-		//persona.setId(null);
-	
         Persona newPersona = MyService.createPersona(persona);
         return ResponseEntity.ok().body(newPersona);
 
