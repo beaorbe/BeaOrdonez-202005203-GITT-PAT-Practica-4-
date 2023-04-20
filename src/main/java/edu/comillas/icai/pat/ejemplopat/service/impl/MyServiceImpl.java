@@ -2,44 +2,39 @@ package edu.comillas.icai.pat.ejemplopat.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.comillas.icai.pat.ejemplopat.service.MyService;
-//import edu.comillas.icai.pat.ejemplopat.dto.Persona;
 import edu.comillas.icai.pat.ejemplopat.model.Persona;
-import edu.comillas.icai.pat.ejemplopat.repository.personaRepository;
+import edu.comillas.icai.pat.ejemplopat.repository.*;
 
 
 
 @Service
 public class MyServiceImpl implements MyService {
 
-	//hace que no tengas que hacer -- new Class();
 	@Autowired
-	private personaRepository personasRepository;
+	private personaRepository personaRepository;
 
-	//servicio Inicial
+
 	@Override
 	public String getInfo(Persona persona) {
 		String responseGetInfo="Servicio OK! - " ;
 		return responseGetInfo;
 	}
 
-    @Override
-    public Persona createPersona(Persona persona) {
-        return personasRepository.save(persona);
-    }
 
-   
+	//crear persona
 	@Override
-    public Iterable<Persona> retrievePersonas() {
-        
-    	return personasRepository.findAll();
-       
-    }
+	public Persona createPersona(Persona persona) {
+		
+		return personaRepository.save(persona);
+	}
 
-    @Override
-    public Persona retrievePersona(String id) {
+
+	//buscar persona 
+	@Override
+    public Persona searchPersona(String nombre) {
         Persona response = null;
-        if (personasRepository.existsById(id)) {
-            Iterable<Persona> personas = personasRepository.retrievePersona(id);
+        if (personaRepository.existsById(nombre)) {
+            Iterable<Persona> personas = personaRepository.searchPersona(nombre);
             for (Persona persona : personas) {
                 response = persona;
             }
@@ -48,21 +43,32 @@ public class MyServiceImpl implements MyService {
         return response;
     }
 
-    @Override
-    public Persona updatePersona(String id, Persona persona) {
-        if (personasRepository.existsById(id)) {
-            return personasRepository.save(persona);
+	//update persona
+	@Override
+    public Persona updatePersona(String nombre, Persona persona) {
+        if (personaRepository.existsById(nombre)) {
+            return personaRepository.save(persona);
         } else {
             return null;
         }
     }
 
-    @Override
+
+	//delete Persona
+	@Override
     public void deletePersona(String id) {
-        personasRepository.deleteById(id);
+    	personaRepository.deleteById(id);
     }
 
 
-	
+
+
+
+
+
+
+
 
 }
+
+
