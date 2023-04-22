@@ -3,22 +3,22 @@ package edu.comillas.icai.pat.ejemplopat.model;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.annotation.Id;
 
 
 @Data
-@Builder
 @Table("PERSONA")
 
 public class Persona {
    
     @Id
-    private Long id;
+    private @Column("ID") Long id;
 
-    private String NOMBRE; 
-    private String APELLIDOS; 
-    private String EMAIL; 
-    private String TELEFONO;
+    private @Column("USER_NAME") String NOMBRE; 
+    private @Column("APELLIDO") String APELLIDOS; 
+    private @Column("EMAIL") String EMAIL; 
+    private @Column("TELEFONO") String TELEFONO;
 
    
     public String getNOMBRE() {

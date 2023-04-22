@@ -41,7 +41,7 @@ public class PersonaController {
 	@PostMapping("/crearpersona")
 	public ResponseEntity<Persona> createPersona(@RequestBody Persona persona) 
 	{
-        Persona newPersona = MyService.createPersona(persona);
+        Persona newPersona = myService.createPersona(persona);
         return ResponseEntity.ok().body(newPersona);
 
 	}
@@ -50,7 +50,7 @@ public class PersonaController {
 	//buscar persona
 	@GetMapping("/persona/{id}")
     public ResponseEntity<Persona> searchPersona(@PathVariable String id) {
-        Persona response = MyService.searchPersona(id);
+        Persona response = myService.searchPersona(id);
         return ResponseEntity.ok().body(response);
     }
 
@@ -59,7 +59,7 @@ public class PersonaController {
 	//update Persona 
 	@PutMapping("/persona/{id}")
     public ResponseEntity<Persona> updatePersona(@PathVariable String id, @RequestBody Persona persona) {
-        Persona newPersona = MyService.updatePersona(id, persona);
+        Persona newPersona = myService.updatePersona(id, persona);
         if (newPersona == null) {
             return ResponseEntity.badRequest().body(null);
         }
@@ -70,7 +70,7 @@ public class PersonaController {
 	//Borrar persona
     @DeleteMapping("/persona/{id}")
     public ResponseEntity<Persona> deletePersona(@PathVariable String id) {
-        MyService.deletePersona(id);
+        myService.deletePersona(id);
         return ResponseEntity.noContent().build();
     }
 

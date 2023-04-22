@@ -1,6 +1,7 @@
 package edu.comillas.icai.pat.ejemplopat.repository;
 import edu.comillas.icai.pat.ejemplopat.model.Persona;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jdbc.repository.query.Query;
 
 public interface personaRepository extends CrudRepository<Persona, String> {
 
