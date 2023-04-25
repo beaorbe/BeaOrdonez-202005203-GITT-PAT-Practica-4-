@@ -13,30 +13,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import edu.comillas.icai.pat.ejemplopat.service.MyService;
-import edu.comillas.icai.pat.ejemplopat.service.impl.MyServiceImpl;
 import jakarta.validation.Valid;
-import edu.comillas.icai.pat.ejemplopat.model.Persona;
+import edu.comillas.icai.pat.ejemplopat.dao.Demo;
+
 
 
 @RestController
+@RequestMapping("/api")
 public class PersonaController {
 
 	@Autowired
-	private MyService myService;
-
+	MyService myService;
 
 	//POST 
-	@PostMapping(path = "/info",
+	@PostMapping(path = "/create")
+	public  ResponseEntity<Demo> createPersona(@RequestBody Demo demo) 
+	{
+	   Demo newDemo = myService.createPersona(demo);
+	   return new ResponseEntity<>(newDemo,HttpStatus.OK);
+	}
+	
+/* 
+	@PostMapping(path = "/create",
 	consumes = MediaType.APPLICATION_JSON_VALUE,
 	produces =MediaType.TEXT_PLAIN_VALUE)
 
-	public  ResponseEntity<String> contacto(@RequestBody Persona persona) 
+	public  ResponseEntity<Demo> createPersona(@RequestBody Demo demo) 
 	{
-
-		return new ResponseEntity<>(persona.toString(),HttpStatus.OK);
-
+	   return new ResponseEntity<>(myService.createPersona(demo),HttpStatus.OK);
 	}
+*/
 
+   //buscar persona
+	@GetMapping("/buscar/{id}")
+    public ResponseEntity<Object> searchPersona(@PathVariable("id") Integer id) {
+        
+		return new ResponseEntity<>(myService.searchPersona(id),HttpStatus.OK);
+    }
+
+
+	/* 
 	//crear persona
 	@PostMapping("/crearpersona")
 	public ResponseEntity<Persona> createPersona(@RequestBody Persona persona) 
@@ -44,18 +60,13 @@ public class PersonaController {
         Persona newPersona = myService.createPersona(persona);
         return ResponseEntity.ok().body(newPersona);
 
-	}
+	}*/
+
+    
+	
 
 
-	//buscar persona
-	@GetMapping("/persona/{id}")
-    public ResponseEntity<Persona> searchPersona(@PathVariable String id) {
-        Persona response = myService.searchPersona(id);
-        return ResponseEntity.ok().body(response);
-    }
-
-
-
+   /* 
 	//update Persona 
 	@PutMapping("/persona/{id}")
     public ResponseEntity<Persona> updatePersona(@PathVariable String id, @RequestBody Persona persona) {
@@ -74,7 +85,7 @@ public class PersonaController {
         return ResponseEntity.noContent().build();
     }
 
-
+*/
 
 
 

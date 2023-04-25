@@ -13,14 +13,26 @@ import org.springframework.data.annotation.Id;
 public class Persona {
    
     @Id
-    private @Column("ID") Long id;
-
+    private @Column("ID") Integer id;
     private @Column("USER_NAME") String NOMBRE; 
     private @Column("APELLIDO") String APELLIDOS; 
     private @Column("EMAIL") String EMAIL; 
     private @Column("TELEFONO") String TELEFONO;
 
-   
+     
+    public Persona(String name, String lastname, String email, String phone) {
+        this.NOMBRE = name;
+        this.APELLIDOS = lastname;
+        this.EMAIL = email;
+        this.TELEFONO = phone;
+    }
+
+    
+    public Integer getID() {
+        return id;
+    }
+    
+
     public String getNOMBRE() {
         return NOMBRE;
     }

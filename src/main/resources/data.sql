@@ -1,1 +1,3 @@
-INSERT INTO PERSONA VALUES('C001', 'BEATRIZ', 'ORDONEZ', '600664777','bea@gmail.com');
+INSERT INTO DEMO (KEY_NAME,FIRST_NAME,LAST_NAME,EMAIL) VALUES
+('OSCAR','SANZ','demoicai@comillas.edu'),
+('JOHN','DOE','johndoe@comillas.edu');

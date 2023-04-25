@@ -1,17 +1,17 @@
 
 //FUNCIONALIDAD DE DEVOLVER LA PERSONA GUARDADA POR PANTALLA 
-function getPersona(){
+function createPersona(){
 
   var raw= JSON.stringify({ 
-    NOMBRE: document.getElementById("NOMBRE").value, 
-    APELLIDOS: document.getElementById("APELLIDOS").value,
+    NOMBRE: document.getElementById("FIRST_NAME").value,
+    APELLIDOS: document.getElementById("LAST_NAME").value,
     EMAIL: document.getElementById("EMAIL").value,
     TELEFONO: document.getElementById("TELEFONO").value }
     );
   
-  alert("SE HAN GUARDADO CORRECTAMENTE LOS SIGUIENTES DATOS:" + raw );
+  //alert("SE HAN GUARDADO CORRECTAMENTE LOS SIGUIENTES DATOS:" + raw );
   
-  fetch('http://localhost:8888/api/info',
+  fetch('http://localhost:8888/api/create',
    {
     headers: {
       "Content-Type": "application/json"
@@ -22,108 +22,37 @@ function getPersona(){
   .then(response => {
       if (res.ok) {
 
+        //alert("SE HAN GUARDADO CORRECTAMENTE LOS SIGUIENTES DATOS:" + raw );
         return(console.log(res.text())); 
+  
         //return res.text();
        
       } else {
+        alert(" NO SE HAN PODIDO GUARDAR LOS DATOS");
         throw new Error("Error petición");
       }
     })
-    .then((data) => {
-      window.location.replace("./index.html");
-    })
+    
     .catch((error) => {
       console.log(error);
     });
   };
 
 
-  //CREATE persona  ---- POST
-  function createPersona(){
-
-    var raw= JSON.stringify({ 
-      NOMBRE: document.getElementById("NOMBRE").value, 
-      APELLIDOS: document.getElementById("APELLIDOS").value,
-      EMAIL: document.getElementById("EMAIL").value,
-      TELEFONO: document.getElementById("TELEFONO").value }
-      );
-    
-    alert("SE HAN GUARDADO CORRECTAMENTE LOS SIGUIENTES DATOS:" + raw );
-    
-    fetch('http://localhost:8888/api/crearpersona',
-     {
-      headers: {
-        "Content-Type": "application/json"
-      },
-       method: "POST",
-       body: raw
-     })
-    .then(response => {
-        if (res.ok) {
-  
-          return(console.log(res.text())); 
-          //return res.text();
-         
-        } else {
-          throw new Error("Error petición");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    };
-
-
-    //UPDATE Persona --- PUT
-    function updatePersona(){
-
-      var raw= JSON.stringify({ 
-        ID: document.getElementById("ID").value, 
-        NOMBRE: document.getElementById("NOMBRE").value, 
-        APELLIDOS: document.getElementById("APELLIDOS").value,
-        EMAIL: document.getElementById("EMAIL").value,
-        TELEFONO: document.getElementById("TELEFONO").value }
-        );
-      
-      alert("SE HAN GUARDADO CORRECTAMENTE LOS SIGUIENTES DATOS:" + raw );
-      
-      fetch('http://localhost:8888/api/info',
-       {
-        headers: {
-          "Content-Type": "application/json"
-        },
-         method: "PUT",
-         body: raw
-       })
-      .then(response => {
-          if (res.ok) {
-    
-            return(console.log(res.text())); 
-            //return res.text();
-           
-          } else {
-            throw new Error("Error petición");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      };
-
 
       //SEARCH PERSONA --- GET
       function searchPersona(){
 
         var raw= JSON.stringify({ 
-          NOMBRE: document.getElementById("NOMBRE").value, 
-          APELLIDOS: document.getElementById("APELLIDOS").value,
+          NOMBRE: document.getElementById("FIRST_NAME").value,
+          APELLIDOS: document.getElementById("LAST_NAME").value,
           EMAIL: document.getElementById("EMAIL").value,
           TELEFONO: document.getElementById("TELEFONO").value }
           );
         
-        alert("SE HAN GUARDADO CORRECTAMENTE LOS SIGUIENTES DATOS:" + raw );
+        //alert( document.getElementById("NOMBRE").value +"SE ENCUENTRA EN EL SISTEMA");
         
-        fetch('http://localhost:8888/persona/{id}',
+        fetch('http://localhost:8888/api/buscar',
          {
           headers: {
             "Content-Type": "application/json"
@@ -131,69 +60,23 @@ function getPersona(){
            method: "GET",
            body: raw
          })
+
         .then(response => {
             if (res.ok) {
       
-              return(console.log(res.text())); 
+              alert( document.getElementById("NOMBRE").value +" SE ENCUENTRA EN EL SISTEMA");
+              return(console.log(res.NOMBRE)); 
               //return res.text();
              
             } else {
+              alert( document.getElementById("NOMBRE").value +" NO SE ENCUENTRA EN EL SISTEMA");
               throw new Error("Error petición");
-            }
+            } 
           })
-          .then((data) => {
-            window.location.replace("./index.html");
-          })
+         
           .catch((error) => {
             console.log(error);
-          });
+          });S
         };
 
-
-        //DELETE PERSONA  ---- DELETE
-
-        function deletePersona(){
-
-          var raw= JSON.stringify({ 
-            NOMBRE: document.getElementById("NOMBRE").value, 
-            APELLIDOS: document.getElementById("APELLIDOS").value,
-            EMAIL: document.getElementById("EMAIL").value,
-            TELEFONO: document.getElementById("TELEFONO").value }
-            );
-          
-          alert("SE HAN GUARDADO CORRECTAMENTE LOS SIGUIENTES DATOS:" + raw );
-          
-          fetch('http://localhost:8888/api/info',
-           {
-            headers: {
-              "Content-Type": "application/json"
-            },
-             method: "DELETE",
-             body: raw
-           })
-          .then(response => {
-              if (res.ok) {
-        
-                return(console.log(res.text())); 
-                //return res.text();
-               
-              } else {
-                throw new Error("Error petición");
-              }
-            })
-            
-            .catch((error) => {
-              console.log(error);
-            });
-          };
-    
-  
-
-
-
-
-
-
-
-
-  
+      
