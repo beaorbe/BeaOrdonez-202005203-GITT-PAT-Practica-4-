@@ -18,6 +18,7 @@ public class Persona {
     private @Column("APELLIDO") String APELLIDOS; 
     private @Column("EMAIL") String EMAIL; 
     private @Column("TELEFONO") String TELEFONO;
+    
 
      
     public Persona(String name, String lastname, String email, String phone) {

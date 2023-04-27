@@ -3,10 +3,10 @@
 function createPersona(){
 
   var raw= JSON.stringify({ 
-    NOMBRE: document.getElementById("FIRST_NAME").value,
-    APELLIDOS: document.getElementById("LAST_NAME").value,
-    EMAIL: document.getElementById("EMAIL").value,
-    TELEFONO: document.getElementById("TELEFONO").value }
+    name: document.getElementById("FIRST_NAME").value,
+    surname: document.getElementById("LAST_NAME").value,
+    email: document.getElementById("EMAIL").value,
+    phone: document.getElementById("TELEFONO").value }
     );
   
   //alert("SE HAN GUARDADO CORRECTAMENTE LOS SIGUIENTES DATOS:" + raw );
@@ -42,16 +42,6 @@ function createPersona(){
 
       //SEARCH PERSONA --- GET
       function searchPersona(){
-
-        var raw= JSON.stringify({ 
-          NOMBRE: document.getElementById("FIRST_NAME").value,
-          APELLIDOS: document.getElementById("LAST_NAME").value,
-          EMAIL: document.getElementById("EMAIL").value,
-          TELEFONO: document.getElementById("TELEFONO").value }
-          );
-        
-        //alert( document.getElementById("NOMBRE").value +"SE ENCUENTRA EN EL SISTEMA");
-        
         fetch('http://localhost:8888/api/buscar',
          {
           headers: {
@@ -64,12 +54,10 @@ function createPersona(){
         .then(response => {
             if (res.ok) {
       
-              alert( document.getElementById("NOMBRE").value +" SE ENCUENTRA EN EL SISTEMA");
-              return(console.log(res.NOMBRE)); 
+              return(console.log(res.text())); 
               //return res.text();
              
             } else {
-              alert( document.getElementById("NOMBRE").value +" NO SE ENCUENTRA EN EL SISTEMA");
               throw new Error("Error petición");
             } 
           })

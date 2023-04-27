@@ -10,9 +10,9 @@ public class Demo {
     private @Column("ID") @Id
     Integer DemoID;
     private @Column("FIRST_NAME")
-    String Name;
+    String name;
     private @Column("LAST_NAME")
-    String Surmame;
+    String surmame;
     private @Column("EMAIL")
     String email;
     private @Column("TELEFONO")
@@ -23,10 +23,10 @@ public class Demo {
     }
     
     public String getName() {
-        return Name;
+        return name;
     }
     public String getSurmame() {
-        return Surmame;
+        return surmame;
     }
     public String getEmail() {
         return email;
@@ -40,10 +40,10 @@ public class Demo {
     }
     
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
     public void setSurmame(String surmame) {
-        Surmame = surmame;
+        this.surmame = surmame;
     }
     public void setEmail(String email) {
         this.email = email;
@@ -56,16 +56,16 @@ public class Demo {
     public Demo(Integer id, String name, String surmame, String email, String phone) {
         this.DemoID = id;
        
-        Name = name;
-        Surmame = surmame;
+        this.name = name;
+        this.surmame = surmame;
         this.email = email;
         this.phone = phone;
     }
 
     public Demo() {
         this.DemoID =0;
-        Name = "";
-        Surmame = "";
+        name = "";
+        surmame = "";
         this.email = "";
         this.phone = "";
     }

@@ -1,3 +1,3 @@
-INSERT INTO DEMO (KEY_NAME,FIRST_NAME,LAST_NAME,EMAIL) VALUES
-('OSCAR','SANZ','demoicai@comillas.edu'),
-('JOHN','DOE','johndoe@comillas.edu');
+INSERT INTO DEMO (FIRST_NAME,LAST_NAME,EMAIL,TELEFONO) VALUES
+('OSCAR','SANZ','demoicai@comillas.edu','600664563'),
+('JOHN','DOE','johndoe@comillas.edu','60066879');
